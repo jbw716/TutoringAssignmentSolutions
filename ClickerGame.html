@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>
+            Click Counter
+        </title>
+        <style>
+            body {
+                background-color: lightblue;
+            }
+            div.container {
+                width: 100vw;
+                padding-top: 25vh;
+                text-align: center;
+            }
+            h1.title {
+                font-weight: bold;
+            }
+            #click-count {
+                width: 100%;
+            }
+            button {
+                display: block;
+                margin: 25px auto;
+                font-weight: bold;
+                font-size: large;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="title">CLICK COUNTER 9000!</h1>
+            <h1 id="click-count">Clicks: <span id="click-count-number"></span></h1>
+            <h2 id="click-bank">Click Bank: <span id="click-bank-number"></span></h2>
+            <button onclick="addClick()">Click Me!</button>
+            <button onclick="resetCount()">Reset</button>
+        </div>
+        <script>
+            const data = {
+                clicks: 0,
+                clickBank: 0
+            }
+            const countNumberElement = document.getElementById('click-count-number');
+            const bankNumberElement = document.getElementById('click-bank-number');
+            function init() {
+                countNumberElement.innerText = data.clicks;
+                bankNumberElement.innerText = data.clickBank;
+            }
+            init();
+            function addClick() {
+                countNumberElement.innerText++;
+                bankNumberElement.innerText++;
+            }
+            function resetCount() {
+                countNumberElement.innerText = 0;
+            }
+            function getCountNumberElement() {
+                return 
+            }
+            function getBankNumberElement() {
+                return document.getElementById('click-bank-number');
+            }
+        </script>
+    </body>
+</html>
