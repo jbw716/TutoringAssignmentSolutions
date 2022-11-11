@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <title>Pizza Order</title>
+    <style>
+        table, th, td {
+            text-transform: capitalize;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #container-table>tbody>tr>td {
+            width: 50%;
+        }
+
+        table table {
+            width: 100%;
+        }
+        button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your Pizza Toppings</h1>
+    <table id="container-table" style="width: 100%;">
+        <tr>
+            <th>
+                Available Toppings
+            </th>
+            <th>
+                Your Toppings
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <table id="toppings">
+                </table>
+            </td>
+            <td>
+                <table id="your-toppings">
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        const toppings = [
+            {
+                type: 'meat',
+                name: 'pepperoni'
+            },
+            {
+                type: 'meat',
+                name: 'sausage'
+            },
+            {
+                type: 'meat',
+                name: 'ham'
+            },
+            {
+                type: 'meat',
+                name: 'bacon'
+            },
+            {
+                type: 'vegetable',
+                name: 'onions'
+            },
+            {
+                type: 'vegetable',
+                name: 'bell peppers'
+            },
+            {
+                type: 'vegetable',
+                name: 'black olives'
+            }
+        ];
+        function initToppings() {
+            var toppingsTable = document.getElementById('toppings');
+            var tbody = document.createElement('tbody');
+            var lastType = null;
+            toppings.forEach(topping => {
+                if (topping.type != lastType) {
+                    lastType = topping.type;
+                    var newTypeHeaderRow = document.createElement('tr');
+                    var newTypeHeader = document.createElement('th');
+                    newTypeHeader.setAttribute('colspan', '2');
+                    newTypeHeader.innerHTML = `<strong>${topping.type}s</strong>`;
+                    newTypeHeaderRow.appendChild(newTypeHeader);
+                    tbody.appendChild(newTypeHeaderRow);
+                }
+                var newToppingRow = document.createElement('tr');
+                var newTopping = document.createElement('td');
+                newTopping.innerText = topping.name;
+                var buttonTd = document.createElement('td');
+                var button = document.createElement('button');
+                button.innerText = 'Add';
+                button.addEventListener('click', () => addTopping(topping.name));
+                buttonTd.appendChild(button);
+                newToppingRow.appendChild(button);
+                newToppingRow.appendChild(newTopping);
+                tbody.appendChild(newToppingRow);
+            });
+            toppingsTable.appendChild(tbody);
+        }
+
+        function addTopping(toppingName) {
+            console.log(toppingName);
+
+        }
+        initToppings();
+    </script>
+</body>
+
+</html>
